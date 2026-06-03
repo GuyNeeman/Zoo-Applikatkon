@@ -5,6 +5,7 @@ import "./App.css";
 import Home from "./components/home";
 import About from "./components/about";
 import Contact from "./components/contact";
+import Datenschutz from "./components/privacy";
 
 function App() {
   return (
@@ -29,6 +30,9 @@ function App() {
                 <Nav.Link as={NavLink} to="/contact">
                   Contact
                 </Nav.Link>
+                <Nav.Link as={NavLink} to="/privacy">
+                  Datenschutz
+                </Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </Container>
@@ -42,6 +46,7 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<Contact />} />
+                <Route path="/privacy" element={<Datenschutz />} />
               </Routes>
             </section>
           </Container>
