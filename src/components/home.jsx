@@ -2,11 +2,6 @@ export default function Home() {
     return (
         <div style={{ fontFamily: "sans-serif", maxWidth: "680px", margin: "0 auto", padding: "2rem 1.5rem", color: "#1a1a1a" }}>
 
-            {/* Header */}
-            <header style={{ marginBottom: "3rem" }}>
-                <strong>BBW Zoo</strong>
-            </header>
-
             {/* Hero */}
             <section style={{ marginBottom: "3rem" }}>
                 <h1 style={{ fontSize: "1.8rem", marginBottom: "1rem" }}>Willkommen im BBW Zoo</h1>
