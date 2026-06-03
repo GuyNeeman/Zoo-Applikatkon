@@ -6,6 +6,8 @@ import { AuthProvider, useAuth } from "./context/AuthContext";
 import Home from "./components/home";
 import About from "./components/about";
 import Contact from "./components/contact";
+import Impressum from "./components/impressum";
+import Datenschutz from "./components/privacy";
 import Login from "./components/login";
 import Register from "./components/register";
 
@@ -70,6 +72,8 @@ function Shell() {
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/impressum" element={<Impressum />} />
+              <Route path="/privacy" element={<Datenschutz />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
             </Routes>
@@ -80,6 +84,10 @@ function Shell() {
       <footer className="site-footer">
         <Container className="layout-container">
           <span>© {new Date().getFullYear()} Zoo Applikation</span>
+          <span style={{ margin: "0 0.5rem" }}>•</span>
+          <NavLink to="/impressum" style={{ color: "inherit", textDecoration: "none" }}>
+            Impressum
+          </NavLink>
         </Container>
       </footer>
     </div>
