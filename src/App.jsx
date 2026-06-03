@@ -5,6 +5,7 @@ import "./App.css";
 import Home from "./components/home";
 import About from "./components/about";
 import Contact from "./components/contact";
+import Datenschutz from "./components/privacy";
 
 function App() {
   return (
@@ -29,6 +30,9 @@ function App() {
                 <Nav.Link as={NavLink} to="/contact">
                   Contact
                 </Nav.Link>
+                <Nav.Link as={NavLink} to="/privacy">
+                  Datenschutz
+                </Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </Container>
@@ -36,19 +40,13 @@ function App() {
 
         <main className="site-main">
           <Container className="layout-container">
-            <section className="page-intro">
-              <h1>Zoo Applikation</h1>
-              <p>
-                Eine einfache und übersichtliche Website mit klarer Struktur,
-                ruhigen Farben und guten Abständen.
-              </p>
-            </section>
 
             <section className="content-box">
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<Contact />} />
+                <Route path="/privacy" element={<Datenschutz />} />
               </Routes>
             </section>
           </Container>
