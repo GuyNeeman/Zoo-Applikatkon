@@ -6,6 +6,7 @@ import Impressum from "./components/impressum";
 import Home from "./components/home";
 import About from "./components/about";
 import Contact from "./components/contact";
+import Datenschutz from "./components/privacy";
 
 function App() {
     return (
@@ -44,6 +45,7 @@ function App() {
                                 <Route path="/about" element={<About/>}/>
                                 <Route path="/contact" element={<Contact/>}/>
                                 <Route path="/impressum" element={<Impressum/>}/>
+                                <Route path="/privacy" element={<Datenschutz />} />                
                             </Routes>
                         </section>
                     </Container>
