@@ -36,13 +36,6 @@ function App() {
 
         <main className="site-main">
           <Container className="layout-container">
-            <section className="page-intro">
-              <h1>Zoo Applikation</h1>
-              <p>
-                Eine einfache und übersichtliche Website mit klarer Struktur,
-                ruhigen Farben und guten Abständen.
-              </p>
-            </section>
 
             <section className="content-box">
               <Routes>
