@@ -7,6 +7,7 @@ import Home from "./components/home";
 import About from "./components/about";
 import Contact from "./components/contact";
 import Datenschutz from "./components/privacy";
+import Tickets from "./components/tickets";
 
 function App() {
     return (
@@ -31,6 +32,9 @@ function App() {
                                 <Nav.Link as={NavLink} to="/contact">
                                     Contact
                                 </Nav.Link>
+                                <Nav.Link as={NavLink} to="/tickets">
+                                    Tickets
+                                </Nav.Link>
                             </Nav>
                         </Navbar.Collapse>
                     </Container>
@@ -45,7 +49,8 @@ function App() {
                                 <Route path="/about" element={<About/>}/>
                                 <Route path="/contact" element={<Contact/>}/>
                                 <Route path="/impressum" element={<Impressum/>}/>
-                                <Route path="/privacy" element={<Datenschutz />} />                
+                                <Route path="/privacy" element={<Datenschutz />} />
+                                <Route path="/tickets" element={<Tickets />} />
                             </Routes>
                         </section>
                     </Container>
