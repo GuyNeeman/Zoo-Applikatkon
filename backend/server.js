@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 
 const { initDb } = require("./config/db");
+const authRoutes = require("./routes/auth");
 const ticketRoutes = require("./routes/tickets");
 
 const app = express();
@@ -13,6 +14,7 @@ app.use(cors({
 }));
 app.use(express.json());
 
+app.use("/api/auth", authRoutes);
 app.use("/api/tickets", ticketRoutes);
 
 app.use((err, req, res, next) => {
@@ -23,7 +25,9 @@ app.use((err, req, res, next) => {
 const PORT = process.env.PORT || 3001;
 
 initDb()
-  .then(() => app.listen(PORT, () => console.log(`Backend running on http://localhost:${PORT}`)))
+  .then(() => {
+    app.listen(PORT, () => console.log(`Backend running on http://localhost:${PORT}`));
+  })
   .catch((err) => {
     console.error("DB init failed:", err.message);
     process.exit(1);
