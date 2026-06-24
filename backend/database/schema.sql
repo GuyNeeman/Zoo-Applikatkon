@@ -8,3 +8,12 @@ CREATE TABLE IF NOT EXISTS users (
   role          ENUM('user', 'admin') NOT NULL DEFAULT 'user',
   created_at    DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE IF NOT EXISTS tickets (
+  id          INT AUTO_INCREMENT PRIMARY KEY,
+  name        VARCHAR(255) NOT NULL,
+  description TEXT,
+  price       DECIMAL(10, 2) NOT NULL,
+  available   BOOLEAN NOT NULL DEFAULT TRUE,
+  created_at  DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);

@@ -3,7 +3,6 @@ const mysql = require("mysql2/promise");
 let pool;
 
 async function initDb() {
-  // Connect without a database first so we can create it if needed
   const bootstrap = await mysql.createConnection({
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
@@ -33,6 +32,17 @@ async function initDb() {
       password_hash VARCHAR(255) NOT NULL,
       role          ENUM('user', 'admin') NOT NULL DEFAULT 'user',
       created_at    DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+    )
+  `);
+
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS tickets (
+      id          INT AUTO_INCREMENT PRIMARY KEY,
+      name        VARCHAR(255) NOT NULL,
+      description TEXT,
+      price       DECIMAL(10, 2) NOT NULL,
+      available   BOOLEAN NOT NULL DEFAULT TRUE,
+      created_at  DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
     )
   `);
 }
