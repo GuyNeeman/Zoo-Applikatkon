@@ -1,0 +1,13 @@
+#cloud-config
+
+packages:
+  - curl
+  - git
+
+runcmd:
+  - curl -fsSL https://get.docker.com | sh
+  - systemctl enable docker
+  - systemctl start docker
+  - git clone https://github.com/GuyNeeman/Zoo-Applikatkon.git /opt/zoo
+  - cp /opt/zoo/.env.example /opt/zoo/.env
+  - cd /opt/zoo && docker compose up -d --build
