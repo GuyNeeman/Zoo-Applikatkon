@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { getToken, useAuth } from "../context/AuthContext";
 
-const API = "http://localhost:3001/api";
+const API = "/api";
 
 export default function Reviews() {
   const { user } = useAuth();
