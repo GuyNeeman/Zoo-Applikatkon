@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
-const API = "http://localhost:3001/api";
+const API = "/api";
 
 export default function Login() {
   const { login } = useAuth();
