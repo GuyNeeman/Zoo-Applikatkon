@@ -143,6 +143,48 @@
   font-size: 0.95rem;
 }
 
+.review-summary {
+  border: 1px solid var(--border);
+  background: var(--soft-bg);
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+
+.star-picker {
+  display: flex;
+  gap: 8px;
+}
+
+.star-button {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: 8px;
+  width: 42px;
+  height: 42px;
+  font-size: 1.35rem;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.star-button:hover {
+  background: var(--accent-soft);
+}
+
+.star-button[aria-pressed="true"] {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.review-item {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  background: var(--surface);
+}
+
 @media (min-width: 992px) {
   .site-nav {
     padding-top: 0;

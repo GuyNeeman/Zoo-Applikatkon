@@ -11,6 +11,7 @@ import Datenschutz from "./components/privacy";
 import Login from "./components/login";
 import Register from "./components/register";
 import Tickets from "./components/tickets";
+import Reviews from "./components/reviews";
 
 export default function App() {
   return (
@@ -47,6 +48,7 @@ function Shell() {
               <Nav.Link as={NavLink} to="/about">About</Nav.Link>
               <Nav.Link as={NavLink} to="/contact">Contact</Nav.Link>
               <Nav.Link as={NavLink} to="/tickets">Tickets</Nav.Link>
+              <Nav.Link as={NavLink} to="/bewertungen">Bewertungen</Nav.Link>
             </Nav>
 
             <Nav className="ms-lg-3" style={{ paddingTop: 10 }}>
@@ -77,6 +79,7 @@ function Shell() {
               <Route path="/impressum" element={<Impressum />} />
               <Route path="/privacy" element={<Datenschutz />} />
               <Route path="/tickets" element={<Tickets />} />
+              <Route path="/bewertungen" element={<Reviews />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
             </Routes>
