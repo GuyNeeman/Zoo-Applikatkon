@@ -45,6 +45,16 @@ async function initDb() {
       created_at  DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
     )
   `);
+
+  await pool.query(`
+    INSERT IGNORE INTO tickets (id, name, description, price) VALUES
+      (1, 'Erwachsene',     'Eintritt für Personen ab 16 Jahren',           22.00),
+      (2, 'Kinder (6–15)',  'Eintritt für Kinder von 6 bis 15 Jahren',       12.00),
+      (3, 'Kleinkinder',    'Kinder unter 6 Jahren haben freien Eintritt',    0.00),
+      (4, 'Familienticket', '2 Erwachsene + bis zu 3 Kinder',               55.00),
+      (5, 'Senioren',       'Personen ab 65 Jahren mit Ausweis',             18.00),
+      (6, 'Jahreskarte',    'Unbegrenzter Eintritt für 12 Monate',           89.00)
+  `);
 }
 
 function getPool() {

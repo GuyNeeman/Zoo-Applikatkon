@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const API = "http://localhost:3001/api";
+const API = "/api";
 
 export default function Tickets() {
   const [tickets, setTickets] = useState([]);
