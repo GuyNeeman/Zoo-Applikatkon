@@ -5,6 +5,7 @@ const cors = require("cors");
 const { initDb } = require("./config/db");
 const authRoutes = require("./routes/auth");
 const ticketRoutes = require("./routes/tickets");
+const reviewRoutes = require("./routes/reviews");
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(express.json());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/tickets", ticketRoutes);
+app.use("/api/bewertungen", reviewRoutes);
 
 app.use((err, req, res, next) => {
   console.error(err);
@@ -29,6 +31,6 @@ initDb()
     app.listen(PORT, () => console.log(`Backend running on http://localhost:${PORT}`));
   })
   .catch((err) => {
-    console.error("DB init failed:", err.message);
+    console.error("DB init failed:", err);
     process.exit(1);
   });

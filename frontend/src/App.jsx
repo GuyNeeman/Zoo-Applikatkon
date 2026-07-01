@@ -11,6 +11,7 @@ import Datenschutz from "./components/privacy";
 import Login from "./components/login";
 import Register from "./components/register";
 import Tickets from "./components/tickets";
+import Reviews from "./components/reviews";
 import ZooMap from "./components/map";
 
 export default function App() {
@@ -71,6 +72,23 @@ function Shell() {
         </Container>
       </Navbar>
 
+      <main className="site-main">
+        <Container className="layout-container">
+          <section className="content-box">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/impressum" element={<Impressum />} />
+              <Route path="/privacy" element={<Datenschutz />} />
+              <Route path="/tickets" element={<Tickets />} />
+              <Route path="/bewertungen" element={<Reviews />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+            </Routes>
+          </section>
+        </Container>
+      </main>
       {isMap ? (
         <Routes>
           <Route path="/map" element={<ZooMap />} />
