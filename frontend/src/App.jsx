@@ -1,4 +1,4 @@
-import { HashRouter, NavLink, Route, Routes, useNavigate } from "react-router-dom";
+import { HashRouter, NavLink, Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import "./App.css";
 
@@ -11,6 +11,8 @@ import Datenschutz from "./components/privacy";
 import Login from "./components/login";
 import Register from "./components/register";
 import Tickets from "./components/tickets";
+import Reviews from "./components/reviews";
+import ZooMap from "./components/map";
 
 export default function App() {
   return (
@@ -25,6 +27,8 @@ export default function App() {
 function Shell() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+  const isMap = location.pathname === "/map";
 
   function handleLogout() {
     logout();
@@ -47,6 +51,7 @@ function Shell() {
               <Nav.Link as={NavLink} to="/about">About</Nav.Link>
               <Nav.Link as={NavLink} to="/contact">Contact</Nav.Link>
               <Nav.Link as={NavLink} to="/tickets">Tickets</Nav.Link>
+              <Nav.Link as={NavLink} to="/map">Karte</Nav.Link>
             </Nav>
 
             <Nav className="ms-lg-3" style={{ paddingTop: 10 }}>
@@ -77,22 +82,47 @@ function Shell() {
               <Route path="/impressum" element={<Impressum />} />
               <Route path="/privacy" element={<Datenschutz />} />
               <Route path="/tickets" element={<Tickets />} />
+              <Route path="/bewertungen" element={<Reviews />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
             </Routes>
           </section>
         </Container>
       </main>
+      {isMap ? (
+        <Routes>
+          <Route path="/map" element={<ZooMap />} />
+        </Routes>
+      ) : (
+        <main className="site-main">
+          <Container className="layout-container">
+            <section className="content-box">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/impressum" element={<Impressum />} />
+                <Route path="/privacy" element={<Datenschutz />} />
+                <Route path="/tickets" element={<Tickets />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+              </Routes>
+            </section>
+          </Container>
+        </main>
+      )}
 
-      <footer className="site-footer">
-        <Container className="layout-container">
-          <span>© {new Date().getFullYear()} Zoo Applikation</span>
-          <span style={{ margin: "0 0.5rem" }}>•</span>
-          <NavLink to="/impressum" style={{ color: "inherit", textDecoration: "none" }}>
-            Impressum
-          </NavLink>
-        </Container>
-      </footer>
+      {!isMap && (
+        <footer className="site-footer">
+          <Container className="layout-container">
+            <span>© {new Date().getFullYear()} Zoo Applikation</span>
+            <span style={{ margin: "0 0.5rem" }}>•</span>
+            <NavLink to="/impressum" style={{ color: "inherit", textDecoration: "none" }}>
+              Impressum
+            </NavLink>
+          </Container>
+        </footer>
+      )}
     </div>
   );
 }

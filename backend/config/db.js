@@ -55,6 +55,18 @@ async function initDb() {
       (5, 'Senioren',       'Personen ab 65 Jahren mit Ausweis',             18.00),
       (6, 'Jahreskarte',    'Unbegrenzter Eintritt für 12 Monate',           89.00)
   `);
+
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS reviews (
+      id          INT AUTO_INCREMENT PRIMARY KEY,
+      user_id     INT NOT NULL,
+      stars       TINYINT NOT NULL,
+      comment     TEXT NOT NULL,
+      created_at  DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+      CONSTRAINT chk_reviews_stars CHECK (stars BETWEEN 1 AND 5),
+      CONSTRAINT fk_reviews_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    )
+  `);
 }
 
 function getPool() {

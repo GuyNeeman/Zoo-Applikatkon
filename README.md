@@ -6,117 +6,135 @@ Webapplikation für den BBW Zoo — gebaut mit **React + Vite** (Frontend) und *
 
 ---
 
-## Voraussetzungen
+## Projektstruktur
 
+```
+Zoo-Applikation/
+├── frontend/
+│   ├── src/
+│   │   ├── components/       home, about, contact, impressum, privacy, login, register, tickets
+│   │   ├── context/          AuthContext.jsx
+│   │   ├── App.jsx
+│   │   └── main.jsx
+│   ├── nginx.conf
+│   ├── Dockerfile
+│   └── package.json
+├── backend/
+│   ├── config/               db.js
+│   ├── controllers/          authController.js, ticketController.js
+│   ├── middleware/            auth.js
+│   ├── routes/               auth.js, tickets.js
+│   ├── database/             schema.sql
+│   ├── Dockerfile
+│   └── server.js
+├── docker-compose.yml
+├── cloud-init.yml
+└── .env.example
+```
+
+---
+
+## Lokal starten
+
+### Voraussetzungen
 - Node.js ≥ 18
-- MySQL-Datenbank (lokal oder remote)
+- MySQL läuft lokal
 
----
+### Installation
 
-## Installation
-
-### Frontend
 ```bash
-npm install
+# Frontend
+cd frontend && npm install
+
+# Backend
+cd backend && npm install
 ```
 
-### Backend
-```bash
-cd backend
-npm install
-```
+### Konfiguration
 
----
-
-## Konfiguration
-
-Im `backend/`-Ordner eine `.env`-Datei erstellen (Vorlage: `.env.example`):
+`backend/.env` erstellen (Vorlage: `backend/.env.example`):
 
 ```env
 PORT=3001
-
 DB_HOST=localhost
 DB_PORT=3306
 DB_USER=root
 DB_PASSWORD=yourpassword
 DB_NAME=zoo_db
-
 JWT_SECRET=langer_zufaelliger_string
 JWT_EXPIRES_IN=7d
 ```
 
-> Die Datenbank `zoo_db` muss in MySQL existieren. Die Tabellen werden beim ersten Start automatisch erstellt.
+> Tabellen werden beim ersten Start automatisch erstellt.
 
----
-
-## Starten
+### Starten
 
 ```bash
-# Terminal 1 – Frontend
-npm run dev
+# Terminal 1
+cd frontend && npm run dev
 
-# Terminal 2 – Backend
-cd backend
-npm run dev
+# Terminal 2
+cd backend && npm run dev
 ```
 
-| Dienst   | URL                       |
-|----------|---------------------------|
-| Frontend | http://localhost:5173      |
-| Backend  | http://localhost:3001      |
+| Dienst   | URL                    |
+|----------|------------------------|
+| Frontend | http://localhost:5173  |
+| Backend  | http://localhost:3001  |
 
 ---
 
-## Projektstruktur
+## Mit Docker starten
 
+### Voraussetzungen
+- Docker & Docker Compose
+
+### Konfiguration
+
+```bash
+cp .env.example .env
 ```
-Zoo-Applikation/
-├── src/
-│   ├── components/
-│   │   ├── home.jsx
-│   │   ├── about.jsx
-│   │   ├── contact.jsx
-│   │   ├── login.jsx
-│   │   └── register.jsx
-│   ├── context/
-│   │   └── AuthContext.jsx
-│   ├── App.jsx
-│   └── main.jsx
-├── backend/
-│   ├── config/
-│   │   └── db.js
-│   ├── controllers/
-│   │   └── authController.js
-│   ├── middleware/
-│   │   └── auth.js
-│   ├── routes/
-│   │   └── auth.js
-│   ├── database/
-│   │   └── schema.sql
-│   └── server.js
-├── index.html
-└── package.json
+
+`.env` ausfüllen:
+
+```env
+DB_PASSWORD=einSicheresPasswort
+DB_NAME=zoo_db
+JWT_SECRET=einLangerZufälligerString
+```
+
+### Starten
+
+```bash
+docker compose up --build -d
+```
+
+App läuft auf **http://localhost**
+
+```bash
+# Logs
+docker compose logs -f
+
+# Stoppen
+docker compose down
 ```
 
 ---
 
 ## API-Endpunkte
 
-| Methode | Pfad                  | Auth | Beschreibung              |
-|---------|-----------------------|------|---------------------------|
-| POST    | `/api/auth/register`  | —    | Konto erstellen           |
-| POST    | `/api/auth/login`     | —    | Anmelden, gibt JWT zurück |
-| GET     | `/api/auth/me`        | JWT  | Eingeloggten User abrufen |
+### Auth
+| Methode | Pfad                 | Auth  | Beschreibung              |
+|---------|----------------------|-------|---------------------------|
+| POST    | `/api/auth/register` | —     | Konto erstellen           |
+| POST    | `/api/auth/login`    | —     | Anmelden, gibt JWT zurück |
+| GET     | `/api/auth/me`       | JWT   | Eingeloggten User abrufen |
 
----
-
-## Scripts
-
-### Frontend
-- `npm run dev` – Entwicklungsserver starten
-- `npm run build` – Produktions-Bundle erstellen
-- `npm run preview` – gebautes Projekt lokal anzeigen
-
-### Backend
-- `npm run dev` – Backend mit Auto-Reload starten (nodemon)
-- `npm start` – Backend ohne Auto-Reload starten
+### Tickets
+| Methode | Pfad                 | Auth        | Beschreibung        |
+|---------|----------------------|-------------|---------------------|
+| GET     | `/api/tickets`       | —           | Alle Tickets laden  |
+| GET     | `/api/tickets/:id`   | —           | Ein Ticket laden    |
+| POST    | `/api/tickets`       | JWT (Admin) | Ticket erstellen    |
+| PUT     | `/api/tickets/:id`   | JWT (Admin) | Ticket bearbeiten   |
+| DELETE  | `/api/tickets/:id`   | JWT (Admin) | Ticket löschen      |
