@@ -51,6 +51,7 @@ function Shell() {
               <Nav.Link as={NavLink} to="/about">About</Nav.Link>
               <Nav.Link as={NavLink} to="/contact">Contact</Nav.Link>
               <Nav.Link as={NavLink} to="/tickets">Tickets</Nav.Link>
+              <Nav.Link as={NavLink} to="/bewertungen">Bewertungen</Nav.Link>
               <Nav.Link as={NavLink} to="/map">Karte</Nav.Link>
             </Nav>
 
@@ -72,23 +73,6 @@ function Shell() {
         </Container>
       </Navbar>
 
-      <main className="site-main">
-        <Container className="layout-container">
-          <section className="content-box">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/impressum" element={<Impressum />} />
-              <Route path="/privacy" element={<Datenschutz />} />
-              <Route path="/tickets" element={<Tickets />} />
-              <Route path="/bewertungen" element={<Reviews />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-            </Routes>
-          </section>
-        </Container>
-      </main>
       {isMap ? (
         <Routes>
           <Route path="/map" element={<ZooMap />} />
@@ -104,6 +88,7 @@ function Shell() {
                 <Route path="/impressum" element={<Impressum />} />
                 <Route path="/privacy" element={<Datenschutz />} />
                 <Route path="/tickets" element={<Tickets />} />
+                <Route path="/bewertungen" element={<Reviews />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
               </Routes>
